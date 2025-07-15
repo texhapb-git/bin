@@ -19,12 +19,14 @@ type BinService interface {
 // BinAPI реализация BinService
 type BinAPI struct {
 	storageService storage.StorageService
+	key            string
 }
 
 // NewBinAPI создает новый экземпляр BinAPI
-func NewBinAPI(storageService storage.StorageService) BinService {
+func NewBinAPI(storageService storage.StorageService, key string) BinService {
 	return &BinAPI{
 		storageService: storageService,
+		key:            key,
 	}
 }
 
