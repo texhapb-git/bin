@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"bin/api"
+	"bin/config"
 	"bin/file"
 	"bin/storage"
 )
@@ -13,7 +14,8 @@ func main() {
 	// Создаем зависимости
 	fileService := file.NewFileManager()
 	storageService := storage.NewJSONStorage(fileService, "data/bins.json")
-	binService := api.NewBinAPI(storageService)
+	cfg := config.LoadConfig()
+	binService := api.NewBinAPI(storageService, cfg.Key)
 
 	// Демонстрация работы с bin'ами
 	fmt.Println("Создаем новый bin...")
