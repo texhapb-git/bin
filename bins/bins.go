@@ -15,6 +15,15 @@ type BinList struct {
 	Bins []Bin `json:"bins"`
 }
 
+// BinRepository интерфейс для работы с bin'ами
+type BinRepository interface {
+	Save(binList *BinList) error
+	Load() (*BinList, error)
+	AddBin(bin *Bin) error
+	GetBin(id string) (*Bin, error)
+	GetAllBins() (*BinList, error)
+}
+
 // NewBin создает новый экземпляр Bin
 func NewBin(id, name string, private bool) *Bin {
 	return &Bin{
